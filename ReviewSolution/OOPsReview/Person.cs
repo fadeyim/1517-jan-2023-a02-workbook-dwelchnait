@@ -67,9 +67,9 @@
         //      and uses an internal name to access the data
         //data held by an auto implemented property CAN ONLY be accessed
         //      using the property
-        public ResidentAddress Address;
+        public ResidentAddress Address { get; set; }
 
-        public List<Employment> EmploymentPositions;
+        public List<Employment> EmploymentPositions { get; set; }
 
         //properties can be readonly
         //a common usage is taking current instance data and re-purposing
