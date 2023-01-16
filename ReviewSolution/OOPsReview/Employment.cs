@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OOPsReview
+{
+    public class Employment
+    {
+        //data members
+        private string _Title;
+        private double _Years;
+        //properties
+
+        //Title cannot be empty
+        //since there is validation, the property will be fully-implemented
+        //since fully-implemented, one requires a data member
+        public string Title
+        {
+            //referred to as the accessor
+            //get is a required item in a property
+            get { return _Title; }
+            //referred to as the mutator
+            //incoming data is accessed using the keyword value
+            //the set is an optional item in a property
+            //open to the public by default
+            //can be restricted to use ONLY with the property
+            //  by setting the access to the set to: private
+            //IF the set is private the only way to access a value
+            //  to the property is via: a constructor OR a behaviour
+            set 
+            { 
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("Title is required");
+                }
+                else
+                {
+                    _Title = value;
+                }
+            }
+        }
+        //enum SupervisoryLevel will not have any additional logic
+        //therefore this property can be auto-implemented
+        public SupervisoryLevel Level;
+
+        //Year will need to be a positive zero or greater value
+        //int
+        //therefore this property needs to be fully-implemented IF
+        //  the validation is within the property
+        //NOTE: validations CAN be code elsewhere within your class
+        //      if so, you need to restrict the set access to the
+        //      property so that any data will be forced through the
+        //      validation logic located elsewhere
+        public double Year
+        {
+            get { return _Years; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentNullException("Year must be a number 0.0 or greater.");
+
+                }
+                else
+                {
+                    _Years = value;
+                }
+            }
+        }
+        //constructors
+        public Employment()
+        {
+            //default constructor
+            //simulates the "system default constructor"
+            Title = "Unknown";
+            Level = SupervisoryLevel.TeamMember;
+            //optionally one could set years to zero, but that is
+            //  the system default for a double, therefore one does
+            //  not need to assign a value UNLESS you wish to
+        }
+
+        public Employment(string title, SupervisoryLevel level, double year = 0.0)
+        {
+            Title=title;
+            Level=level;
+            Year=year;
+        }
+
+
+        //behaviours
+    }
+}
