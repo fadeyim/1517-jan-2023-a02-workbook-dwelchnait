@@ -63,7 +63,8 @@ namespace OOPsReview
             get { return _Years; }
             set
             {
-                if (value < 0)
+                //this validation test is using a method from the static class Utilities
+                if (!Utilities.IsZeroPositive(value))
                 {
                     throw new ArgumentNullException("Year must be a number 0.0 or greater.");
 

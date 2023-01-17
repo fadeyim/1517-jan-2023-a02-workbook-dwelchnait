@@ -21,6 +21,13 @@
       <FileName>ResidentAddress.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="OOPsReview.Utilities">
+    <Position X="2.5" Y="4.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="OOPsReview.SupervisoryLevel">
     <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
