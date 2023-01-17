@@ -43,7 +43,12 @@ namespace OOPsReview
         }
         //enum SupervisoryLevel will not have any additional logic
         //therefore this property can be auto-implemented
-        public SupervisoryLevel Level;
+        //the private set will NOT allow a piece of code outside of this class
+        //  to change the value of the property
+        //this will force any code using this class to set the Level either by
+        //  the a constructor OR a behaviour
+        //it basically makes the Level a read only field when accessed directly
+        public SupervisoryLevel Level { get; private set; }
 
         //Year will need to be a positive zero or greater value
         //int
@@ -53,7 +58,7 @@ namespace OOPsReview
         //      if so, you need to restrict the set access to the
         //      property so that any data will be forced through the
         //      validation logic located elsewhere
-        public double Year
+        public double Years
         {
             get { return _Years; }
             set
@@ -85,10 +90,23 @@ namespace OOPsReview
         {
             Title=title;
             Level=level;
-            Year=year;
+            Years=year;
         }
 
 
         //behaviours
+        public void SetEmploymentResponsibilityLevel(SupervisoryLevel level)
+        {
+            //the property has a private set
+            //therefore this behaviour allows outside code to give the property a value
+            Level = level;
+        }
+
+        public override string ToString()
+        {
+            //this string is known as a "comma separate value" string (csv)
+            //the get of the property is being used
+            return $"{Title},{Level},{Years}";
+        }
     }
 }
