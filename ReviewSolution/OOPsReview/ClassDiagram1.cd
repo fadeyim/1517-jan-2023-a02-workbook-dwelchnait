@@ -3,7 +3,7 @@
   <Class Name="OOPsReview.Person">
     <Position X="0.5" Y="0.5" Width="7" />
     <TypeIdentifier>
-      <HashCode>AQAAAEAAAAEAAIAAAAEAAAAAAAAAQEAAAAAAAEAAAAg=</HashCode>
+      <HashCode>AQAAAEAAAAEAAIAAAAEAAAAAAAAAQEACAAAAAEAAAAg=</HashCode>
       <FileName>Person.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -12,6 +12,13 @@
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAEAEAAAAAAAAAIAAIAABAAAAAAIAAAA=</HashCode>
       <FileName>Employment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPsReview.ResidentAddress">
+    <Position X="7.75" Y="4" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAgAMoEAEAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ResidentAddress.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="OOPsReview.SupervisoryLevel">

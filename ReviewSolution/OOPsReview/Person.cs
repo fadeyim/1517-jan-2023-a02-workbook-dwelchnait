@@ -67,7 +67,7 @@
         //      and uses an internal name to access the data
         //data held by an auto implemented property CAN ONLY be accessed
         //      using the property
-        //public ResidentAddress Address { get; set; }
+        public ResidentAddress Address { get; set; }
 
         public List<Employment> EmploymentPositions { get; set; }
 
