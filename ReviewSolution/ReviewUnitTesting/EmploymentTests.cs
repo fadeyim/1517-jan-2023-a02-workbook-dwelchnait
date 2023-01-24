@@ -1,4 +1,5 @@
 using OOPsReview; //is a namespace
+using System.Reflection.Emit;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ReviewUnitTesting
@@ -14,7 +15,7 @@ namespace ReviewUnitTesting
             string expectedTitle = "Unknown";
             SupervisoryLevel expectedLevel = SupervisoryLevel.TeamMember;
             double expectedYears = 0.0;
-            DateTime expectedStartDate = DateTime.Parse("2023,01,23");
+            DateTime expectedStartDate = DateTime.Today;
 
             //Act
             //this is the execution of the item being tested
@@ -35,18 +36,19 @@ namespace ReviewUnitTesting
         }
 
         [TestMethod]
-        [DataRow("Unit Test Designer",SupervisoryLevel.TeamLeader,"2017-08-23",5.5)]
-        public void Employment_CreateGoodGreedyConstructor(string title, SupervisoryLevel level, 
-            string startdate, double years)
+        [DataRow("Unit Test Designer",SupervisoryLevel.TeamLeader,5.5)]
+        public void Employment_CreateGoodGreedyConstructor(string title, SupervisoryLevel level, double years)
         {
             //Arrange
             string expectedTitle = "Unit Test Designer";
             SupervisoryLevel expectedLevel = SupervisoryLevel.TeamLeader;
             double expectedYears = 5.5;
-            DateTime expectedStartDate = DateTime.Parse(startdate);
+           
+            int days = Decimal.ToInt32(5.5m * 365);
+            DateTime expectedStartDate = DateTime.Today.AddDays(-1 * days);
 
             //Act
-            Employment employment = new Employment(title, level, DateTime.Parse(startdate), years);
+            Employment employment = new Employment(title, level, expectedStartDate, years);
 
             //Assess
             Assert.AreEqual(expectedTitle, employment.Title, "Employment title values not as expected: "
@@ -61,18 +63,29 @@ namespace ReviewUnitTesting
         }
 
         [TestMethod]
-        [DataRow(" ", SupervisoryLevel.TeamLeader, "2017-08-23", 5.5)] //blank in title
-        [DataRow(null, SupervisoryLevel.TeamLeader, "2017-08-23", 5.5)] // null title
-        [DataRow("Bad Level value", (SupervisoryLevel)111, "2017-08-23", 5.5)] //bad enum value
-        [DataRow("Future Date", SupervisoryLevel.TeamLeader, "2027-08-23", 5.5)] //bad year
-        [DataRow("Negative Year ", SupervisoryLevel.TeamLeader, "2017-08-23", -5.5)] //bad year
+        [DataRow(" ", SupervisoryLevel.TeamLeader,  5.5)] //blank in title
+        [DataRow(null, SupervisoryLevel.TeamLeader,  5.5)] // null title
+        [DataRow("Bad Level value", (SupervisoryLevel)111,  5.5)] //bad enum value
+        [DataRow("Future Date", SupervisoryLevel.TeamLeader, 5.5)] //bad year
+        [DataRow("Negative Year ", SupervisoryLevel.TeamLeader,  -5.5)] //bad year
         public void Employment_GreedyConstructor_BadData_NotMade(string title, 
-            SupervisoryLevel level, string startdate, double years)
+            SupervisoryLevel level,  double years)
         {
             try
             {
                 //Arrange
-                DateTime StartDate = DateTime.Parse(startdate);
+                int days = 0;
+                DateTime StartDate=DateTime.Today;
+                if (title.Equals("Future Date"))
+                {
+                    days = 10;
+                    StartDate = DateTime.Today.AddDays(days);
+                }
+                else
+                {
+                    days = Decimal.ToInt32(5.5m * 365);
+                    StartDate = DateTime.Today.AddDays(-1 * days);
+                }
 
                 //the instance should not exist, thus no values for comparison
 
@@ -111,8 +124,10 @@ namespace ReviewUnitTesting
         public void Employment_SetSupervisoryLevel_Good(SupervisoryLevel level)
         {
             //Arrange
+            int days = Decimal.ToInt32(5.5m * 365);
+            DateTime StartDate = DateTime.Today.AddDays(-1 * days);
             Employment employment = new Employment("Boss", SupervisoryLevel.DepartmentHead,
-                DateTime.Parse("2019-08-23"),3.5);
+                StartDate,5.5);
 
             //Act
             employment.SetEmploymentResponsibilityLevel(SupervisoryLevel.Entry);
@@ -129,8 +144,10 @@ namespace ReviewUnitTesting
             try
             {
                 //Arrange
+                int days = Decimal.ToInt32(5.5m * 365);
+                DateTime StartDate = DateTime.Today.AddDays(-1 * days);
                 Employment employment = new Employment("Boss", SupervisoryLevel.DepartmentHead,
-                    DateTime.Parse("2019-08-23"), 3.5);
+                    StartDate, 5.5);
 
                 //Act
                 employment.SetEmploymentResponsibilityLevel(level);
@@ -157,16 +174,37 @@ namespace ReviewUnitTesting
         public void Employment_GoodToString()
         {
             //arrange
-            Employment employmentToString = new Employment("Boss", SupervisoryLevel.DepartmentHead,
-                DateTime.Parse("2019-08-23"), 3.5);
-            string expectedToString = "Boss,DepartmentHead,Aug 23 2019,3.5";
+            int days = Decimal.ToInt32(5.5m * 365);
+            DateTime StartDate = DateTime.Today.AddDays(-1 * days);
+            Employment employment = new Employment("Boss", SupervisoryLevel.DepartmentHead,
+                StartDate, 5.5);
+            string thedate = StartDate.ToString("MMM dd yyyy");
+            string expectedToString = $"Boss,DepartmentHead,{thedate},5.5";
 
             //act
-            string actToString = employmentToString.ToString();
+            string actToString = employment.ToString();
 
             //assess
             Assert.AreEqual(expectedToString, actToString, "Employment ToString values are not as expected:" +
                 $"{expectedToString} vs {actToString}");
         }
+
+        [TestMethod]
+        public void Employment_PropertyTitle_GoodTitle()
+        {
+            //Arrange
+            string expectedTitle = "Unit Test Designer";
+            Employment employment = new Employment();
+
+            //Act
+            employment.Title = "Unit Test Designer";
+
+            //Assess
+            Assert.AreEqual(expectedTitle, employment.Title, "Employment title values not as expected: "
+                + $"{expectedTitle} vs {employment.Title}");
+           
+        }
+
+       
     }
 }
