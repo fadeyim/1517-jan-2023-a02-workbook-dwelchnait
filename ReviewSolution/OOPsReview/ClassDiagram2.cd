@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="OOPsReview.Person">
-    <Position X="0.5" Y="0.5" Width="7" />
-    <TypeIdentifier>
-      <HashCode>AQAAAEAAAAEAAIAAAAEAAAAAAAAAQEACAAAAAEAAAAg=</HashCode>
-      <FileName>Person.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OOPsReview.Employment">
-    <Position X="8.25" Y="0.5" Width="5.75" />
+    <Position X="0.5" Y="0.5" Width="5.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAEAEAAAAAAAAAIAAIAABAAAAAAIAAAA=</HashCode>
+      <HashCode>CAAAAQAAAAAAAEAEAAAAAAAAAIAAIAABAAAAAEIAAAA=</HashCode>
       <FileName>Employment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOPsReview.ResidentAddress">
-    <Position X="7.75" Y="4" Width="6.75" />
+    <Position X="7.5" Y="0.5" Width="7" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAgAMoEAEAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ResidentAddress.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOPsReview.Utilities">
-    <Position X="2.5" Y="4.5" Width="4" />
+    <Position X="4" Y="4.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Utilities.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="OOPsReview.Person">
+    <Position X="7.75" Y="4" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAEAAAAEAAIAAAAEAAAAAAAAAQEACAAAAAEAAAAg=</HashCode>
+      <FileName>Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="OOPsReview.SupervisoryLevel">
-    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Position X="1.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAUIACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAIAAAA=</HashCode>
       <FileName>SupervisoryLevel.cs</FileName>
