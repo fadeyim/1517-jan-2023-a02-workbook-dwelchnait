@@ -205,6 +205,84 @@ namespace ReviewUnitTesting
            
         }
 
-       
+        [TestMethod]
+        [DataRow(" ")]
+        [DataRow(null)]
+        public void Employment_PropertyTitle_BadTitle(string title)
+        {
+            try
+            {
+                //Arrange
+               
+                Employment employment = new Employment();
+
+                //Act
+                employment.Title = title;
+
+
+
+                //Assess
+                Assert.Fail("Exception was expected and failed to be thrown.");
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("required"));
+            }
+
+           
+            catch (Exception ex)
+            {
+                Assert.IsFalse(ex.Message.Contains("Assert.Fail"));
+                Assert.IsTrue(ex.Message.Length > 0, "Exception contains no message.");
+            }
+
+        }
+
+        [TestMethod]
+        public void Employment_PropertyYears_GoodYears()
+        {
+            //Arrange
+            double expectedYears = 3.7;
+            Employment employment = new Employment();
+
+            //Act
+            employment.Years = 3.7;
+
+            //Assess
+            Assert.AreEqual(expectedYears, employment.Years, "Employment title values not as expected: "
+                + $"{expectedYears} vs {employment.Years}");
+
+        }
+        [TestMethod]
+        [DataRow(-3.7)]
+        public void Employment_PropertyYears_BadYears(double years)
+        {
+            try
+            {
+                //Arrange
+
+                Employment employment = new Employment();
+
+                //Act
+                employment.Years = years;
+
+
+
+                //Assess
+                Assert.Fail("Exception was expected and failed to be thrown.");
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("0.0 or greater"));
+            }
+
+
+            catch (Exception ex)
+            {
+                Assert.IsFalse(ex.Message.Contains("Assert.Fail"));
+                Assert.IsTrue(ex.Message.Length > 0, "Exception contains no message.");
+            }
+
+        }
     }
 }
