@@ -157,5 +157,11 @@ namespace OOPsReview
             //the get of the property is being used
             return $"{Title},{Level},{StartDate.ToString("MMM dd yyyy")},{Years}";
         }
+
+        public void CorrectStartDate(DateTime startdate)
+        {
+            //
+            StartDate = startdate;
+        }
     }
 }
