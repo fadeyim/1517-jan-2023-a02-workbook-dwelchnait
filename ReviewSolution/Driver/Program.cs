@@ -4,7 +4,8 @@ using OOPsReview;
 Console.WriteLine("OOPs Review Console Driver");
 
 //ArrayDriver();
-ListCollectionDriver();
+//ListCollectionDriver();
+ParseAndTryParseDriver();
 
 void ArrayDriver()
 {
@@ -79,7 +80,60 @@ void ListCollectionDriver()
         index--; //don't forget to increment your index when you use while loops
     }
 }
-Employment GetEmploymentRecord()
+
+
+
+void ParseAndTryParseDriver()
+{
+    Console.WriteLine("\n\nCreating a Parse and TryParse for Employment\n");
+
+    Employment employment = null;
+    string csvString = "Boss,Owner,Jul 12 1976,45.1";
+    string csvStringShort = "Boss,Owner,45.1";
+    string csvStringNull = ",Owner,Jul 12 1976,45.1";
+    string csvStringEnum = "Boss,Bad,Jul 12 1976,45.1";
+    string csvStringDate = "Boss,Owner,Jul 12 2026,45.1";
+    string csvStringYears = "Boss,Owner,Jul 12 1976,-45.1";
+
+    //catches for a try/catch must be coded specific to general
+    try
+    {
+        employment = Employment.Parse(csvString);
+        Console.WriteLine($"Successful Parse. Employment instance contains {employment.ToString()}");
+        
+        //employment = Employment.Parse(csvStringShort);
+        //employment = Employment.Parse(csvStringNull);
+        //employment = Employment.Parse(csvStringEnum);
+        //employment = Employment.Parse(csvStringDate);
+        //employment = Employment.Parse(csvStringYears);
+
+
+        Console.WriteLine($"Successful Parse. Employment instance contains {employment.ToString()}");
+
+    }
+    catch (FormatException ex)
+    {
+        Console.WriteLine($"\n\t\tError Format: {ex.Message}\n ");
+    }
+    catch (ArgumentNullException ex)
+    {
+        Console.WriteLine($"\n\t\tError Null Exception: {ex.Message}\n ");
+    }
+    catch (ArgumentOutOfRangeException ex)
+    {
+        Console.WriteLine($"\n\t\tError Range: {ex.Message}\n ");
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine($"\n\t\tError Argument: {ex.Message}\n ");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"\n\t\tError: {ex.Message}\n ");
+    }
+}
+
+    Employment GetEmploymentRecord()
 {
     string inputValue;
     Employment newRecord = new Employment();

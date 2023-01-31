@@ -163,5 +163,86 @@ namespace OOPsReview
             //
             StartDate = startdate;
         }
+
+        //Parse(string)
+        // attempts to change the contents of a string to another data type
+        // this method contains basic validation on the number of fields
+        //    if there are insufficient values then expected an error
+        //    can be thrown
+        // no condition was checked before doing the change
+        // example string 55 --> int x = int.Parse(string);  <-- success
+        //         string bob --> int x = int.Parse(string); <-- aborted
+
+        //bool TryParse(string, out resultvariable)
+        // a check is do to see if the Parse could actually be done
+
+        // this method has a set of try/catch to control the situation
+        //      such that an abort can be avoided
+
+        // the result of the attempt is
+        //  a) true and the converted string value is place into the resultvariable
+        //  b)false and no conversion of the string AND NO abort
+
+        // int resultvariable = 0;
+        // if(int.TryParse(string, out resultvariable) { .....}
+
+        //classes are a developer defined datatype
+        //you can use a class in the same way as an int, double, ...
+        //therefore, we should be able to take a string for a class instance
+        //  and convert it into an actual existng instance
+        //Classes can have their own .Parse and .TryParse
+        //
+        //example: "Boss,Owner,Jul 12 1976,45.1"   <-- csv record
+        //  this record should be able to create an instance of Employment
+
+        //Employment employment = Employment.Parse(string);
+        //the method will:
+        //  validate there are sufficient values for an instance
+        //  will use primitive datatype .Parse() to convert the individual values
+        //  will return aloaded instance of the Employment class
+        //  will use the FormatException() if insufficient data is supplied
+
+        //THIS METHOD WILL BE A SHARED METHOD (STATIC)
+        //THIS METHOD WILL NOT RETAIN ANY DATA
+        public static Employment Parse(string text)
+        {
+            //text is a string of csv values (comma separated values)
+            //separate the string of values into individual string values
+            //the result of Split is an array of strings
+            //each array element represents a value
+            //the .split(delimiter) is use for the division of the string
+            //in a csv string the delimiter character is a comma
+            //NOTE: this posses a concern for data that could possible 
+            //      contain a comma as part of the data format
+            //      example: short string dates normally have comma; Jul 5, 2020
+            //      the comma in the date would be consider a delimiter
+            string[] pieces = text.Split(',');
+
+            //verify that sufficient values exist to create the Employment instance
+            if (pieces.Length != 4)
+            {
+                throw new FormatException($"String not in expected format.  Missing value {text}");
+            }
+
+            //return a new instance of the Employment class
+            //  create a new instance on the return statement
+            //  as the instance isbeing created, the Employment constructor will be used
+            //  ANY validation occuring during the execution of the constructor will still be
+            //      done, whether the logic is in the constructor OR in the individual property
+            //  when converting a string to an enum you must use a type casted, Enum.Parse
+            return new Employment(
+                                    pieces[0],
+                                    (SupervisoryLevel)Enum.Parse(typeof(SupervisoryLevel), pieces[1]),
+                                    DateTime.Parse(pieces[2]),
+                                    double.Parse(pieces[3])
+                                );
+        }
+
+
+
+
+
+
+
     }
 }
