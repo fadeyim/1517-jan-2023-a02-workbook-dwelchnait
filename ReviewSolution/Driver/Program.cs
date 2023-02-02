@@ -98,9 +98,18 @@ void ParseAndTryParseDriver()
     //catches for a try/catch must be coded specific to general
     try
     {
-        employment = Employment.Parse(csvString);
-        Console.WriteLine($"Successful Parse. Employment instance contains {employment.ToString()}");
-        
+        //employment = Employment.Parse(csvString);
+
+        if (Employment.TryParse(csvString, out employment))
+        {
+            Console.WriteLine($"Successful Parse. Employment instance contains {employment.ToString()}");
+        }
+        else
+        {
+            Console.WriteLine("TryParse Failed");
+        }
+
+
         //employment = Employment.Parse(csvStringShort);
         //employment = Employment.Parse(csvStringNull);
         //employment = Employment.Parse(csvStringEnum);
@@ -108,7 +117,14 @@ void ParseAndTryParseDriver()
         //employment = Employment.Parse(csvStringYears);
 
 
-        Console.WriteLine($"Successful Parse. Employment instance contains {employment.ToString()}");
+        if (Employment.TryParse(csvStringShort, out employment))
+        {
+            Console.WriteLine($"Successful Parse. Employment instance contains {employment.ToString()}");
+        }
+        else
+        {
+            Console.WriteLine("TryParse Failed");
+        }
 
     }
     catch (FormatException ex)

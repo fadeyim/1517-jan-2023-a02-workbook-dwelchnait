@@ -238,7 +238,44 @@ namespace OOPsReview
                                 );
         }
 
+        //the TryParse() method will receive a string AND output an instance of 
+        //  Employment as an output parameter
 
+        //syntax of a .TryParse     xxxx.TryParse(string, out receivingvariable)
+        //         int example      int.TryParse(inputValue, out myIntegerNumber)
+        //   xxxx is the any valid datatype
+        //   Since classes are a developer-defined datatype in C#
+        //          xxxx can be a class
+
+        //the method will return a boolean value indicating if the Parsing is
+        //      successful or not
+        //to avoid duplication of code, this method will call the .Parse() method
+
+        public static bool TryParse(string text, out Employment result)
+        {
+            //one needs a instance of Employment setup to return
+            result = null;
+
+            //if (string.IsNullOrWhiteSpace(text))
+            //{
+            //    throw new ArgumentNullException("Parsing string is empty");
+            //}
+            ////notice when using the Parse method WITHIN the class definition
+            ////   one does NOT need to add the classname to the method
+            //result = Parse(text);
+            //return true;
+
+            //Don's preferred technique
+
+            bool flag = false;
+            if(!string.IsNullOrWhiteSpace(text))
+            {
+                result = Parse(text);
+                flag = true;
+
+            }
+            return flag;
+        }
 
 
 
