@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace OOPsReview
 {
     public class ResidentAddress
     {
         //data members
+        [JsonInclude]
         public int Number;
+        [JsonInclude]
         public string Address1;
+        [JsonInclude]
         public string Address2;
         private string _Unit; //infers a fully-implemented property
         private string _City; //infers a fully-implemented property
+        [JsonInclude]
         public string ProvinceState;
 
         //properties
