@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    //this coding block is in the C# universe
+    //you can place C# coding and program logic within this coding block
+    //the following line of code set the Title property of the ViewData class
+    //  to a value
+    //this value is used on the _Layout.cshtml page to set the browse tag title
+    //this is the same as setting your title value in html via the <title> tag
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <!-- the at symbol is use to exit the html universe and enter the C# universe
+         Model reference the PageModel class
+         Once inside the PageModel class, you hae access to any property declared
+            within the class
+    -->
+    <h1 class="display-4">Welcome @Model.OwnerName</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
