@@ -1,0 +1,50 @@
+﻿@page
+@model WebApp.Pages.Samples.BasicEventsModel
+@{
+    ViewData["Title"] = "Razor Page Basics";
+}
+
+<h1>Razor Page Basics</h1>
+@*
+    <form> arguments: method - indicates how data is transferedc to server
+                         get - visible on URL in plain text
+                        post - embedded with the form objects sent to the server,
+                                not visible
+                      action - directs the server to the page to process the form
+                             - optional
+                             - missing or = "" it goes to the current page
+
+    <button> three types
+                submit: sends the form to the server for processing
+                reset:  locally clears the form and does NOT send to the server
+                button:
+
+    Events: OnGet() :executes when the page first is constructed
+                    :executes if method="get"
+            OnPost():executes as the default submit of a button
+                    :executes if method="post"
+            OnPostXXXXX():where XXXXX is a unique string for a page-handler
+                         :executes if method="post"
+                         :page-handlers are used when you have multiple
+                            submit buttons on your web page
+                         :adding a page-handler to your submit button indicates
+                            the event logic to execute
+*@
+<form method="post">
+    <button type="submit">Press Me (submit form to default OnPost)</button>
+    &nbsp;&nbsp;
+    <button type="submit" asp-page-handler="SecondButton">
+        Press Me (submit form to specified OnPost event)</button>
+</form>
+<!-- when you do your logic in the PageModel class, you do not
+        have direct access to the web page
+     all data is packaged by the browser and sent to the web server
+     this data arrives in an instance of the class Request
+     Data sent to the browser uses an instance of the Response class
+
+     If this page wish to use something from the PageModel, during constructor
+        of the page on the web server, the page may acces the Model and all
+        properties with the Model
+    You must be in the C# universe to access the Model
+-->
+@Model.Feedback
