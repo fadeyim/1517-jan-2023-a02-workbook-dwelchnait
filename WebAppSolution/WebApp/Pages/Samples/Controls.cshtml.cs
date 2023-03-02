@@ -17,7 +17,7 @@ namespace WebApp.Pages.Samples
 
         [BindProperty]
         public string RadioMeal { get; set; }
-        public string[] RadioMeals = new[] { "breakfast", "lunch", "dinner/supper", "snacks" };
+        public string[] RadioMeals = new[] { "breakfast", "1st lunch", "2nd lunch", "dinner","supper", "snacks" };
 
         [BindProperty]
         public bool AcceptanceBox { get; set; } //remember value=true on input control

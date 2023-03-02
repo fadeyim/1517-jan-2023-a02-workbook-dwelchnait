@@ -25,6 +25,19 @@ namespace WebApp.Pages.Samples
         [BindProperty]
         public string MassText { get; set; }
 
+        //this is for the select control that has a value attribute
+        //      on the <option> tag
+        //the datatype of the property MUST MATCh the value attribute 
+        //      on the <option> tag
+        [BindProperty]
+        public int FavouriteCourse { get; set; }
+
+        //this is for the select control that has NO value attribute
+        //      on the <option> tag
+        //the datatype of the property MUST BE A STRING
+        [BindProperty]
+        public string FavouriteCourseNoValueOnOption { get; set; }
+
         public string FeedBack { get; set; }
         public void OnGet()
         {
@@ -39,10 +52,16 @@ namespace WebApp.Pages.Samples
             {
                 FeedBack = "You did not enter a comment";
             }
+            else if (FavouriteCourse == 0)
+            {
+                FeedBack = "You did not indicate your favourite course. Please choose.";
+            }
             else
             {
                 FeedBack = $"You entered the value {Num}" +
-                    $" your comment is {MassText}";
+                    $" your comment is {MassText}" +
+                    $" your favourite course number is: {FavouriteCourse}" +
+                    $" for {FavouriteCourseNoValueOnOption}";
             }
         }
     }

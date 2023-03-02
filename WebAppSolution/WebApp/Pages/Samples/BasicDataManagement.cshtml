@@ -56,6 +56,29 @@
         TextArea for large amounts of data
         <textarea asp-for="MassText" rows="5" cols="50"></textarea>
     </label>
+    <label>
+        Select a favorite course from the drop down list (select control):
+        <select asp-for="FavouriteCourse">
+            <option value="0">on screen prompt line ...</option>
+            <option value="1008">Digital media Tools</option>
+            <option value="1012">Programming Fundamentals</option>
+            <option value="1017">Web Design Fundamentals</option>
+            <option value="1517">Introduction to Web Applications</option>
+        </select>
+    </label>
+    <label>
+        <!-- IF there is NO value attribute on your option tag
+                BY DEFAULT the text of the option is used as the value
+        -->
+        Using a select without a value on the option tag:
+        <select asp-for="FavouriteCourseNoValueOnOption">
+            <option >on screen prompt line ...</option>
+            <option >Digital media Tools</option>
+            <option >Programming Fundamentals</option>
+            <option >Web Design Fundamentals</option>
+            <option >Introduction to Web Applications</option>
+        </select>
+    </label>
     <br/><br/>
     <button type="submit" asp-page-handler="ControlProcessing">
         Press Me
