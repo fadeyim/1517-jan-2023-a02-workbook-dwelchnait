@@ -1,5 +1,6 @@
 ﻿@page
 @model WebApp.Pages.Samples.UsingEmploymentClassModel
+@using OOPsReview
 @{
     ViewData["Title"] = "Using Classes";
 }
@@ -20,8 +21,8 @@
     </label>
     <label>
         Select supervisory level:
-        <select asp-for="supervisorylevel">
-            <option value="Entry">Entry</option>
+        <select asp-for="employment.Level">
+            <option value="@SupervisoryLevel.Entry">Entry</option>
             <option value="TeamMember">TeamMember</option>
             <option value="TeamLeader">TeamLeader</option>
             <option value="Supervisor">Supervisor</option>
