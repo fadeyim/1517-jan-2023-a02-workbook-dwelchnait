@@ -93,20 +93,20 @@
             <label>
                 Select favourite meal<br/>
             </label>
-            @*<input type="radio" asp-for="RadioMeal" value="breakfast"/>
+            <input type="radio" asp-for="RadioMeal" value="breakfast"/>
                 &nbsp;Breakfast<br/>
             <input type="radio" asp-for="RadioMeal" value="lunch"/>
                 &nbsp;Lunch<br/>
             <input type="radio" asp-for="RadioMeal" value="dinner/supper"/>
                 &nbsp;Dinner/Supper<br/>
             <input type="radio" asp-for="RadioMeal" value="snacks"/>
-                &nbsp;Snacks<br/>*@
+                &nbsp;Snacks<br/>
             
-            @foreach(var item in Model.RadioMeals)
+           @* @foreach(var item in Model.RadioMeals)
             {
                 <input type="radio" asp-for="RadioMeal" value="@item"/> @item<br/>
             }
-            <br/>
+            <br/>*@
             <label>
                 <input type="checkbox" asp-for="AcceptanceBox" value=true />
                     &nbsp; I agree to the terms
