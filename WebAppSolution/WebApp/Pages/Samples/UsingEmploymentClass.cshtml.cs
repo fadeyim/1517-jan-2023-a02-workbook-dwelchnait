@@ -11,6 +11,8 @@ namespace WebApp.Pages.Samples
     {
         public string FeedBack { get; set; }
 
+        public string ErrorMsg { get; set; }
+
         [BindProperty]
         public Employment employment { get; set; }
 
@@ -22,6 +24,31 @@ namespace WebApp.Pages.Samples
 
         public void OnGet()
         {
+        }
+
+        public void OnPostAccept()
+        {
+            try
+            {
+                employment.CorrectStartDate(startdate);
+                FeedBack = employment.ToString();
+            }
+            catch (ArgumentNullException ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+            catch (ArgumentException ex)
+            {
+                ErrorMsg = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+            }
         }
     }
 }

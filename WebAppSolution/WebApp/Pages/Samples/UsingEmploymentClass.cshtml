@@ -13,6 +13,13 @@
     </blockquote>
 }
 
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMsg))
+{
+    <blockquote style="background-color:lightpink; color:firebrick">
+        @Model.ErrorMsg
+    </blockquote>
+}
+
 <form method="post">
     <label>
         Enter employment Title:
@@ -22,12 +29,35 @@
     <label>
         Select supervisory level:
         <select asp-for="employment.Level">
-            <option value="@SupervisoryLevel.Entry">Entry</option>
+            @* hardcode literal values
+            <option value="Entry">Entry</option>
             <option value="TeamMember">TeamMember</option>
             <option value="TeamLeader">TeamLeader</option>
             <option value="Supervisor">Supervisor</option>
             <option value="DepartmentHead">DepartmentHead</option>
-            <option value="Owner">Owner</option>
+            <option value="Owner">Owner</option>*@
+           
+            @*  using enum directly both value and display text
+            <option value="@SupervisoryLevel.Entry">@SupervisoryLevel.Entry</option>
+            <option value="@SupervisoryLevel.TeamMember">@SupervisoryLevel.TeamMember</option>
+            <option value="@SupervisoryLevel.TeamLeader">@SupervisoryLevel.TeamLeader</option>
+            <option value="@SupervisoryLevel.Supervisor">@SupervisoryLevel.Supervisor</option>
+            <option value="@SupervisoryLevel.DepartmentHead">@SupervisoryLevel.DepartmentHead</option>
+            <option value="@SupervisoryLevel.Owner">@SupervisoryLevel.Owner</option>*@
+            
+            @* if you do NOT use the value attribute the returned value is the text
+            <option>@SupervisoryLevel.Entry</option>
+            <option>@SupervisoryLevel.TeamMember</option>
+            <option>@SupervisoryLevel.TeamLeader</option>
+            <option>@SupervisoryLevel.Supervisor</option>
+            <option>@SupervisoryLevel.DepartmentHead</option>
+            <option>@SupervisoryLevel.Owner</option>*@
+
+            @* using an Enum method call GetNames and a loop*@
+            @foreach(var level in Enum.GetNames(typeof(SupervisoryLevel)))
+            {
+                <option>@level</option>
+            }
         </select>
     </label>
     <label>
@@ -36,7 +66,7 @@
     </label>
     <label>
         Enter number of years in position
-        <input type="number" asp-for="employment.Years" min="0.0" step="0.1" />
+        <input type="number" asp-for="employment.Years" min="0.0"  step="0.1" />
     </label>
     <br/><br/>
     <button type="submit" asp-page-handler="Accept">Accept</button>

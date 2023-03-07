@@ -1,0 +1,31 @@
+﻿@page
+@model WebApp.Pages.Samples.ReadJSONModel
+@using OOPsReview;
+@{
+    ViewData["Title"] = "Reading JSON File";
+}
+<h1>Reading a Json file</h1>
+
+
+@if (!string.IsNullOrWhiteSpace(Model.FeedBack))
+{
+    <blockquote style="background-color:aqua">
+        @Model.FeedBack
+    </blockquote>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMsg))
+{
+    <blockquote style="background-color:lightpink; color:firebrick">
+        @Model.ErrorMsg
+    </blockquote>
+}
+
+<form method="post">
+    <label>
+        Find file:
+        <input type="file" asp-for="fileName" />
+        <br/><br/>
+        <button type="submit" asp-page-handler="Read">Read</button>
+    </label>
+</form>

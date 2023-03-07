@@ -32,7 +32,7 @@ namespace OOPsReview
          public SupervisoryLevel Level 
         { 
             get { return _Level; } 
-            private set
+            set
             {
                 if (!Enum.IsDefined(typeof(SupervisoryLevel), value))
                 {
@@ -67,7 +67,7 @@ namespace OOPsReview
             Title = "Unknown";
             Level = SupervisoryLevel.TeamMember;
             StartDate = DateTime.Today;
-          
+
         }
 
         public Employment(string title, SupervisoryLevel level, 
@@ -97,7 +97,11 @@ namespace OOPsReview
 
         public void CorrectStartDate(DateTime startdate)
         {
-            //
+            if (startdate >= DateTime.Today.AddDays(1))
+            {
+                throw new ArgumentException($"The start date is in the future thus invalid:" +
+                    $"{startdate}");
+            }
             StartDate = startdate;
         }
 
