@@ -29,3 +29,35 @@
         <button type="submit" asp-page-handler="Read">Read</button>
     </label>
 </form>
+
+<!-- sample of table creation on web page-->
+@if(Model.employee != null)
+{
+    <table>
+        <thead>
+            @*
+                this area is use for column headers
+            *@
+            <tr>
+                <th>Title</th>
+                <th>Level</th>
+                <th>YIP</th>
+                <th> Start Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.employee.EmploymentPositions)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Level</td>
+                    <td>@item.Years</td>
+                    <td>@item.StartDate.ToString("MMM dd, yyyy")</td>
+                </tr>
+            }
+        </tbody>
+       @* <tfoot>
+           there  is not footer in this example
+        </tfoot>*@
+    </table>
+}

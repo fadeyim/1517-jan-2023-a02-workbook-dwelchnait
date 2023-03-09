@@ -59,7 +59,7 @@ namespace OOPsReview
             }
         }
 
-         public DateTime StartDate { get; private set; }
+         public DateTime StartDate { get; set; }
 
         //constructors
         public Employment()
