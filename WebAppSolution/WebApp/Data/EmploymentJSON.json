@@ -1,0 +1,23 @@
+{
+  "EmployeeId": 45632145,
+  "EmploymentPositions": [
+    {
+      "Title": "Worker",
+      "Level": 1,
+      "Years": 5.5,
+      "StartDate": "2002-07-13T00:00:00"
+    },
+    {
+      "Title": "Project Lead",
+      "Level": 2,
+      "Years": 10.1,
+      "StartDate": "2008-02-03T00:00:00"
+    },
+    {
+      "Title": "Department Head",
+      "Level": 4,
+      "Years": 5,
+      "StartDate": "2018-03-13T00:00:00"
+    }
+  ]
+}
