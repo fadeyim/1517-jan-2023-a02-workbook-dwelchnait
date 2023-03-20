@@ -41,7 +41,23 @@ namespace WebApp.Pages.Samples
         
         public void OnGet()
         {
+            //this method  executes each time the page first comes up
+            //internet is stateless
+            //  thus, if you left the current page for another page
+            //        then return to this page, it is treated as "first time"
             PopulateLists();
+        }
+
+        public IActionResult OnPostClear()
+        {
+            //this post will force the system to treat this page as "first time"
+            //this is done by redirecting the page to itself
+            //unlike Page() which reshows the current page
+            //   the RedirectToPage() calls the OnGet() method as if it
+            //       is a "first time"
+            //
+            //using the RedirectToPage in this manner is the same as using a Reset type button
+            return RedirectToPage();
         }
 
         public void PopulateLists()
