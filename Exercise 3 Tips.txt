@@ -1,0 +1,30 @@
+Declarations in PageModel (code-behind)
+
+public int myNumber {get;set;}
+<p> @Model.myNumber </p>
+
+public Person me {get; set;}
+<p> @Model.me.PropertyName  </p>
+<p> @Model.me.MethodName() </p>
+
+in Person
+birthdate set check is the date in the past
+AgeOnDate OnPostxxxxx
+           entered AgeOnDate >= Person.birthdate
+		call the Person method
+		FeedbackMessage = "    "
+	    else
+                ErrorMessage = "     "
+
+remember your PageModel is a class
+therefore, it can contain private methods
+the code in the PageModel class can call its OWN
+    private methods.
+So if you wish to modularize your code you can
+Also all declared properties in PageModel are known
+    and accessable to any method in the class.
+
+Remember we have create a separate class called Person.
+Remember you may have a separate class for the Royal Person.
+Therefore, if you need to make any other class to
+    solve your problem. GO RIGHT AHEAD
