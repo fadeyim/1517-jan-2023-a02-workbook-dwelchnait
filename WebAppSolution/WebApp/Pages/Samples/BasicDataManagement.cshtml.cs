@@ -44,19 +44,21 @@ namespace WebApp.Pages.Samples
         }
         public void OnPostControlProcessing()
         {
+            //do your form validation and record your error message under ModelState
             if (Num == 0)
             {
-                FeedBack ="Value for number is zero";
+                ModelState.AddModelError(nameof(Num),"Value for number is zero");
             }
-            else if (MassText.Length == 0)
+            if (MassText == null || MassText.Length == 0)
             {
-                FeedBack = "You did not enter a comment";
+                ModelState.AddModelError(nameof(MassText), "You did not enter a comment");
             }
-            else if (FavouriteCourse == 0)
+            if (FavouriteCourse == 0)
             {
-                FeedBack = "You did not indicate your favourite course. Please choose.";
+                ModelState.AddModelError(nameof(FavouriteCourse), "You did not indicate your favourite course. Please choose.");
             }
-            else
+            //is the ModelState in good order
+            if (ModelState.IsValid)
             {
                 FeedBack = $"You entered the value {Num}" +
                     $" your comment is {MassText}" +

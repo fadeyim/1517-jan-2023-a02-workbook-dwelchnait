@@ -47,14 +47,28 @@
 
 *@
 
+@*
+    The following is a setup that allows the display of recorded errors
+       save within your PageModel when you use ModelState.AddModelError()
+    It will automatically format your errors in a nice list
+*@
+<div asp-validation-summary="All" class="text-danger">
+    @if (ModelState.ErrorCount > 0)
+    {
+        <p> Please review the following concerns to correct your submission:</p>
+    }
+</div>
+
 <form method="post">
     <label>
         Enter a number:
         <input type="number" asp-for="Num"/>
+        <span asp-validation-for="Num"></span>
     </label>
     <label>
         TextArea for large amounts of data
         <textarea asp-for="MassText" rows="5" cols="50"></textarea>
+        <span asp-validation-for="MassText"></span>
     </label>
     <label>
         Select a favorite course from the drop down list (select control):
@@ -65,6 +79,7 @@
             <option value="1017">Web Design Fundamentals</option>
             <option value="1517">Introduction to Web Applications</option>
         </select>
+        <span asp-validation-for="FavouriteCourse"></span>
     </label>
     <label>
         <!-- IF there is NO value attribute on your option tag
