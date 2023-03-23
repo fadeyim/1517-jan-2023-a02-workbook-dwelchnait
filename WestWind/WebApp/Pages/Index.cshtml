@@ -7,4 +7,14 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <p>Display of the Build Version for the database. This data is coming from the BuildVersion DbSet&lt;BuildVerion&gt;
+         located in our context class. A call from the OnGet() in the PageModel to the service in the AboutServies
+         retrieves the data from the class library.
+    </p>
+    <p>
+        version: @Model.dbVersion.Major . @Model.dbVersion.Minor . @Model.dbVersion.Build
+        release data of @Model.dbVersion.ReleaseDate
+    </p>
+
 </div>
