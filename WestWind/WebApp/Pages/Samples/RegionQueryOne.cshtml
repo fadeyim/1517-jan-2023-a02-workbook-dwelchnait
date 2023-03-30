@@ -10,3 +10,53 @@
     selecting from a dropdownlist (select control). The entity being used is
     the Region table as it has only 2 fields to display (for simplicity).
 </p>
+@if(ModelState.ErrorCount > 0)
+{
+    <div asp-validation-summary="All" class="alert alert-danger">
+    
+            <p>Please review concerns and correct:</p>
+   
+    </div>
+}
+
+<form method="post">
+    <div class="setflex">
+        <div class="onehalf">
+            <label>Region Id:</label>&nbsp;&nbsp;
+            <input type="text" asp-for="txtRegionId"
+               placeholder="region id" />
+            <br/><br/>
+            <!-- https://blog.hubspot.com/website/bootstrap-button-->
+            <button type="submit" asp-page-handler="TextRegionQuery"
+               class="btn btn-primary">
+                Submit Entry
+            </button>
+        </div>
+        <div class="onehalf">
+            <label>Select Region:</label>&nbsp;&nbsp;
+            <select asp-for="ddlRegionId">
+                <option value="0">select ...</option>
+                @foreach(var item in Model.regionList)
+                {
+                    <option value="@item.RegionID">@item.RegionDescription</option>
+                }
+            </select>
+            <br /><br />
+            <button type="submit" asp-page-handler="SelectionRegionQuery"
+                    class="btn btn-info">
+                Submit Selection
+            </button>
+        </div>
+    </div>
+    <div>
+        @if(Model.regionRecord == null)
+        {
+            <p><strong>@Model.Feedback</strong></p>
+        }
+        else
+        {
+            <p>Region ID (primary key): @Model.regionRecord.RegionID</p>
+            <p>Region Description: @Model.regionRecord.RegionDescription</p>
+        }
+    </div>
+</form>

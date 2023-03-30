@@ -16,3 +16,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*own custom CSS*/
+.setflex{
+    display: flex;
+}
+
+.onehalf{
+    width:47%;
+    margin-right:3%; 
+}
