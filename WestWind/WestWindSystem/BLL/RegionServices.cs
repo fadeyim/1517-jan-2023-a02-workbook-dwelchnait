@@ -32,7 +32,7 @@ namespace WestWindSystem.BLL
         public List<Region> Regions_GetAll()
         {
             IEnumerable<Region> info = _context.Regions;
-            return info.ToList();
+            return info.OrderBy(x => x.RegionDescription).ToList();
         }
 
         //this query will receive a parameter value and return a Region
@@ -45,6 +45,13 @@ namespace WestWindSystem.BLL
             //Find the first occurance and return
             //If NOT found, return a value of NULL
             info = _context.Regions.FirstOrDefault(anyregionrow => anyregionrow.RegionID == regionid);
+
+            // this is just another version of asking for the same data
+            //      from the database
+            //info = _context.Regions
+            //            .Where(anyregionrow => anyregionrow.RegionID == regionid)
+            //            .FirstOrDefault();
+
             return info;
         }
         #endregion
